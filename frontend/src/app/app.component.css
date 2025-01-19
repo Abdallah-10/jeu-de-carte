@@ -1,0 +1,117 @@
+
+section,
+div,
+span {
+  -webkit-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none; 
+  font-family: "Space Grotesk", "Roboto", sans-serif;
+}
+.cartes {
+    display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+}
+
+/* Animation */
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-50vh);
+  }
+
+  40% {
+    opacity: 100%;
+  }
+
+  75% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem; 
+  flex-wrap: no-wrap;
+  height: 100%;
+}
+
+.card {
+  background-color: lightgray;
+  width: 8rem; /* Largeur fixe pour les cartes */
+  aspect-ratio: 2/3;
+  border-radius: 1rem;
+  position: relative; /* Positionnement relatif pour éviter de cacher des cartes */
+  box-shadow: 0px 0px 2.2px rgba(0, 0, 0, 0.02),
+    0px 0px 5.3px rgba(0, 0, 0, 0.028), 0px 0px 10px rgba(0, 0, 0, 0.035),
+    0px 0px 17.9px rgba(0, 0, 0, 0.042), 0px 0px 33.4px rgba(0, 0, 0, 0.05),
+    0px 0px 80px rgba(0, 0, 0, 0.07);
+  object-fit: scale-down;
+  transition: rotate 0.15s ease-in-out, transform 0.22s ease-in-out;
+  cursor: pointer;
+  animation: slide-down 1s ease-in-out;
+}
+
+.selected {
+  border: solid 2px #787878;
+}
+
+.card:hover {
+  filter: brightness(1.03);
+  animation:slide-down 1s ease-in-out backwards;
+  transform : translateY(calc(-2rem * cos(40deg))) rotate(-10deg);
+}
+
+.card{
+  rotate: -15deg;
+}
+
+.black {
+  color: #141414;
+}
+.red {
+  color: #de4b4b;
+}
+
+.card section:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  width: 2rem;
+  font-size: 2rem;
+}
+
+.card section:nth-child(2) {
+  position: absolute;
+  left: calc(50% - 3.5rem);
+  top: calc(50% - 5rem);
+  width: 6rem;
+  height: 12rem;
+  font-size: 10rem;
+}
+
+section span:nth-child(2) {
+  font-size: 3rem;
+}
+button.btn.trier {
+    margin-top: 50px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: rotate 0.15s ease-in-out, transform 0.22s ease-in-out;
+}

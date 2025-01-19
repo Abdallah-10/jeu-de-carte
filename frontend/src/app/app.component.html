@@ -1,0 +1,79 @@
+<!-- Affichage de la main aléatoire -->
+<div *ngIf="randomHand; else loading">
+  <p>Voici une main aléatoire :</p>
+
+  <div class="cartes">
+    <div
+      *ngFor="let card of randomHand"
+      class="card"
+      [ngClass]="{ 
+        'selected': card.selected, 
+        'black': card.color === 'Pique' || card.color === 'Trèfle', 
+        'red': card.color === 'Carreaux' || card.color === 'Cœur' 
+      }"
+      (click)="toggleSelected(card)"
+    >
+      <section>
+        <!-- Affichage de la valeur de la carte, avec des remplacements pour les figures -->
+        <span>
+          <ng-container *ngIf="card.value === 'Dame'">D</ng-container>
+          <ng-container *ngIf="card.value === 'AS'">A</ng-container>
+          <ng-container *ngIf="card.value === 'Valet'">V</ng-container>
+          <ng-container *ngIf="card.value === 'Roi'">R</ng-container>
+          <ng-container *ngIf="card.value !== 'Dame' && card.value !== 'AS' && card.value !== 'Valet' && card.value !== 'Roi'">
+            {{ card.value }}
+          </ng-container>
+        </span>
+      </section>
+      <section>
+        <!-- Affichage du symbole correspondant à la couleur -->
+        <span *ngIf="card.color === 'Pique'">♠</span>
+        <span *ngIf="card.color === 'Trèfle'">♣</span>
+        <span *ngIf="card.color === 'Carreaux'">♦</span>
+        <span *ngIf="card.color === 'Cœur'">♥</span>
+      </section>
+    </div>
+  </div>
+  <!-- Bouton pour trier les cartes -->
+  <button class="btn trier" (click)="sortCards()">Trier les cartes</button>
+  <!-- Affichage de la main triée -->
+  <div *ngIf="sortedHand.length > 0">
+    <p>Voici la main triée :</p>
+    <div class="cartes">
+      <div
+        *ngFor="let card of sortedHand"
+        class="card"
+        [ngClass]="{ 
+          'selected': card.selected, 
+          'black': card.color === 'Pique' || card.color === 'Trèfle', 
+          'red': card.color === 'Carreaux' || card.color === 'Cœur' 
+        }"
+        (click)="toggleSelected(card)"
+      >
+        <section>
+          <!-- Affichage de la valeur de la carte, avec des remplacements pour les figures -->
+          <span>
+            <ng-container *ngIf="card.value === 'Dame'">D</ng-container>
+            <ng-container *ngIf="card.value === 'AS'">A</ng-container>
+            <ng-container *ngIf="card.value === 'Valet'">V</ng-container>
+            <ng-container *ngIf="card.value === 'Roi'">R</ng-container>
+            <ng-container *ngIf="card.value !== 'Dame' && card.value !== 'AS' && card.value !== 'Valet' && card.value !== 'Roi'">
+              {{ card.value }}
+            </ng-container>
+          </span>
+        </section>
+        <section>
+          <!-- Affichage du symbole correspondant à la couleur -->
+          <span *ngIf="card.color === 'Pique'">♠</span>
+          <span *ngIf="card.color === 'Trèfle'">♣</span>
+          <span *ngIf="card.color === 'Carreaux'">♦</span>
+          <span *ngIf="card.color === 'Cœur'">♥</span>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Chargement de la main...</p>
+</ng-template>
